@@ -1,0 +1,31 @@
+name: 'Pull Request helm chart to Kubesphere Helm Repository'
+description: 'Used for pull request helm chart to Kubesphere'
+inputs:
+  chart_dir:
+    description: 'Helm chart path from you current directory'
+    required: true
+  user_email:
+    description: 'Email for the git commit'
+    required: true
+  user_name:
+    description: 'GitHub username for the commit'
+    required: true
+  destination_base_branch:
+    description: 'The branch into which you want your code merged.'
+    required: false
+    default: "master"
+  pull_request_reviewers:
+    description: 'Pull request reviewers users'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.chart-dir }}
+    - ${{ inputs.user-email }}
+    - ${{ inputs.user-name }}
+    - ${{ inputs.destination-base-branch }}
+    - ${{ inputs.pull-request-reviewers }}
+branding:
+  icon: 'git-commit'
+  color: 'green'
