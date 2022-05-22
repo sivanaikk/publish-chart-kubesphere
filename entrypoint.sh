@@ -9,11 +9,11 @@ then
   return -1
 fi
 
-if [ $INPUT_DESTINATION_HEAD_BRANCH == "main" ] || [ $INPUT_DESTINATION_HEAD_BRANCH == "master"]
-then
-  echo "Destination head branch cannot be 'main' nor 'master'"
-  return -1
-fi
+#if [ $INPUT_DESTINATION_HEAD_BRANCH == "main" ] || [ $INPUT_DESTINATION_HEAD_BRANCH == "master"]
+#then
+#  echo "Destination head branch cannot be 'main' nor 'master'"
+#  return -1
+#fi
 
 if [ -z "$INPUT_PULL_REQUEST_REVIEWERS" ]
 then
@@ -30,12 +30,13 @@ git config --global user.name "$INPUT_USER_NAME"
 echo "Fork and Cloning Kubesphere git repository"
 gh repo fork kubesphere/helm-charts --clone
 
-
+export INPUT_DESTINATION_HEAD_BRANCH=$GITHUB_REPOSITORY-chart
 echo "Copying contents to git repo"
 cd helm-charts
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 cp -r ./../$CHART_DIR "src/main"
 
+export $INPUT_DESTINATION_BASE_BRANCH=master
 echo "Adding git commit"
 git add .
 if git status | grep -q "Changes to be committed"
