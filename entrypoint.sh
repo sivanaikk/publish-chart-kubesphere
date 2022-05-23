@@ -48,7 +48,7 @@ if git status | grep -q "Changes to be committed"
 then
   git commit --message "Helm chart PR from $GITHUB_REPOSITORY:$GITHUB_SHA"
   echo "Pushing git commit"
-  git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
+  git push -u origin 
   echo "Creating a pull request"
   gh pr create -t "$GITHUB_REPOSITORY Helm Chart" \
                -b "Automatic Helm Chart Release from $GITHUB_REPOSITORY:$GITHUB_SHA by github workflow" \
