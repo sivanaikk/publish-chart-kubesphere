@@ -35,7 +35,7 @@ git config --global user.name "$INPUT_USER_NAME"
 echo "Fork and Cloning Kubesphere git repository"
 gh repo fork kubesphere/helm-charts --clone
 
-export INPUT_DESTINATION_HEAD_BRANCH=$GITHUB_REPOSITORY-chart
+export INPUT_DESTINATION_HEAD_BRANCH=helm-chart
 echo "Copying contents to git repo"
 cd helm-charts
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
