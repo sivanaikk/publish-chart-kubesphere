@@ -41,7 +41,7 @@ cd helm-charts
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 cp -r ./../$CHART_DIR "src/main"
 
-export $INPUT_DESTINATION_BASE_BRANCH=master
+export INPUT_DESTINATION_BASE_BRANCH=master
 echo "Adding git commit"
 git add .
 if git status | grep -q "Changes to be committed"
