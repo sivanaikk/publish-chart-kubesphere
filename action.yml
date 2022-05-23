@@ -10,13 +10,10 @@ inputs:
   user_name:
     description: 'GitHub username for the commit'
     required: true
-  destination_base_branch:
-    description: 'The branch into which you want your code merged.'
-    required: false
-    default: "master"
   pull_request_reviewers:
     description: 'Pull request reviewers users'
     required: false
+    
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -24,7 +21,6 @@ runs:
     - ${{ inputs.chart_dir }}
     - ${{ inputs.user_email }}
     - ${{ inputs.user_name }}
-    - ${{ inputs.destination_base_branch }}
     - ${{ inputs.pull_request_reviewers }}
 branding:
   icon: 'git-commit'

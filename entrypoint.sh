@@ -1,7 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 set -x
+
+export CHART_DIR=$1
+export INPUT_USER_EMAIL=$2
+export INPUT_USER_NAME=$3
+export INPUT_PULL_REQUEST_REVIEWERS=$4
 
 if [ -z "$CHART_DIR" ]
 then
