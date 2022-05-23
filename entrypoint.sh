@@ -58,8 +58,8 @@ then
   gh pr create -t "$GITHUB_REPOSITORY Helm Chart" \
                -b "Automatic Helm Chart Release from $GITHUB_REPOSITORY:$GITHUB_SHA by github workflow" \
                --base $INPUT_DESTINATION_BASE_BRANCH \
-               --head $INPUT_DESTINATION_HEAD_BRANCH \
-               --repo kubesphere/helm-charts \
+               --head $GITHUB_REPOSITORY_OWNER:$INPUT_DESTINATION_HEAD_BRANCH 
+                
                
 else
   echo "No changes detected"
