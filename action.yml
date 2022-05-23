@@ -1,4 +1,4 @@
-name: 'Pull Request helm chart to Kubesphere Helm Repository'
+name: 'Publish chart to KubeSphere'
 description: 'Used for pull request helm chart to Kubesphere'
 inputs:
   chart_dir:
