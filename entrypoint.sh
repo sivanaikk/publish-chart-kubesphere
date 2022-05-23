@@ -32,8 +32,11 @@ export GITHUB_TOKEN=$API_TOKEN_GITHUB
 git config --global user.email "$INPUT_USER_EMAIL"
 git config --global user.name "$INPUT_USER_NAME"
 
-echo "Fork and Cloning Kubesphere git repository"
-gh repo fork kubesphere/helm-charts --clone
+echo "Fork Kubesphere git repository"
+gh repo fork kubesphere/helm-charts
+
+echo "Cloning destination git repository"
+git clone "https://github.com/kubesphere/helm-charts"
 
 export INPUT_DESTINATION_HEAD_BRANCH=helm-chart
 echo "Copying contents to git repo"
