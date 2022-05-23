@@ -28,19 +28,21 @@ else
 fi
 
 echo "Setting git variables"
-export GITHUB_TOKEN=$API_TOKEN_GITHUB
+echo $API_TOKEN_GITHUB | gh auth login --with-token
 git config --global user.email "$INPUT_USER_EMAIL"
 git config --global user.name "$INPUT_USER_NAME"
 
 echo "Fork Kubesphere git repository"
-gh repo fork kubesphere/helm-charts
-
-echo "Cloning destination git repository"
-git clone "https://github.com/kubesphere/helm-charts"
+gh repo fork kubesphere/helm-charts --clone
 
 export INPUT_DESTINATION_HEAD_BRANCH=helm-chart
 echo "Copying contents to git repo"
 cd helm-charts
+
+echo "Setting git variables in helm-charts"
+echo $API_TOKEN_GITHUB | gh auth login --with-token
+git config --global user.email "$INPUT_USER_EMAIL"
+git config --global user.name "$INPUT_USER_NAME"
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 cp -r ./../$CHART_DIR "src/main"
 
@@ -52,6 +54,7 @@ then
   git commit --message "Helm chart PR from $GITHUB_REPOSITORY:$GITHUB_SHA"
   echo "Pushing git commit"
   git push --set-upstream origin helm-chart
+  git push https://$GITHUB_REPOSITORY_OWNER:$API_TOKEN_GITHUB$@github.com/$GITHUB_REPOSITORY_OWNER/helm-charts.git helm-chart
   echo "Creating a pull request"
   gh pr create -t "$GITHUB_REPOSITORY Helm Chart" \
                -b "Automatic Helm Chart Release from $GITHUB_REPOSITORY:$GITHUB_SHA by github workflow" \
