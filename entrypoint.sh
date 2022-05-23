@@ -53,7 +53,6 @@ if git status | grep -q "Changes to be committed"
 then
   git commit --message "Helm chart PR from $GITHUB_REPOSITORY:$GITHUB_SHA"
   echo "Pushing git commit"
-  git pull 
   git push https://$GITHUB_REPOSITORY_OWNER:$API_TOKEN_GITHUB@github.com/$GITHUB_REPOSITORY_OWNER/helm-charts.git helm-chart
   echo "Creating a pull request"
   gh pr create -t "$GITHUB_REPOSITORY Helm Chart" \
