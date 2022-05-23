@@ -60,7 +60,7 @@ then
                --base $INPUT_DESTINATION_BASE_BRANCH \
                --head $INPUT_DESTINATION_HEAD_BRANCH \
                --repo kubesphere/helm-charts \
-               --reviewer  $PULL_REQUEST_REVIEWERS 
+               
 else
   echo "No changes detected"
 fi
