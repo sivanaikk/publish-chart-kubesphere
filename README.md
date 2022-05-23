@@ -3,16 +3,16 @@
 This GitHub Action copies a folder from the current repository to a location in another repository and create a pull request
 
 ## Example Workflow
-    name: Push File
+    name: Pulish Helm chart to KubeSphere
 
     on: push
 
     jobs:
-      pull-request:
+      publish:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
-          uses: actions/checkout@v2  # checkout repo where elm chart present in root directory
+          uses: actions/checkout@v2  # checkout repo where helm chart present in root directory
 
         - name: Create pull request
           uses: kethavathsivanaik/publish-chart-kubesphere@v1
